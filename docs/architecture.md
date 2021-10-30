@@ -29,3 +29,5 @@ In the front-end part we are using:
 ### Entity Relationship Diagram
 
 ![ER diagram](./images/ER_diagram.png)
+
+To see the project specification, click [here](./specification.md).

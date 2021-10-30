@@ -18,3 +18,5 @@ This software product can be useful for different categories of people.
 ![Info use case diagram for logged user](./images/Info_UseCaseDiagram.png)
 
 ![Transacrions use case diagram for logged user](./images/Transactions_UseCaseDiagram.png)
+
+To see the project architecture, click [here](./architecture.md).
