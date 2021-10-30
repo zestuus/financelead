@@ -3,7 +3,7 @@
 ### Personal finance planner
 
 ## Overview
-### This project is online implementation of personal finance planner.
+This project is a personal finance planner.
 
 ## Documantation
 
