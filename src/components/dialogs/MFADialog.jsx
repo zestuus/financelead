@@ -17,10 +17,10 @@ const MFADialog = ({
     closeLabel={__('Close')}
     title={__('Multi-factor authentication activated')}
   >
-    {__('To start using it')}:
     <Grid container justifyContent="center">
       <img src={qrCode} alt={__('QR code')}/>
     </Grid>
+    {__('To start using it')}:
     <ol>
       <li>{__('Download authenticator app for your phone')} (Google Authenticator, Microsoft Authenticator, {__('etc')});</li>
       <li>{__('Open the app and scan QR code above')};</li>

@@ -7,19 +7,3 @@ export const OneHour = 60 * OneMinute;
 export const OneDay = 24 * OneHour;
 
 export const HourHeight = 42;
-
-// TODO: do we need this?
-// export const UkrainianMonths = [
-//   'Січень',
-//   'Лютий',
-//   'Березень',
-//   'Квітень',
-//   'Травень',
-//   'Червень',
-//   'Липень',
-//   'Серпень',
-//   'Вересень',
-//   'Жовтень',
-//   'Листопад',
-//   'Грудень'
-// ]
