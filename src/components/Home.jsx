@@ -41,7 +41,7 @@ const SecondTitle = styled.h3`
   }
 `;
 
-const Name = styled.span`
+const WebsiteName = styled.span`
   color: ${PRIMARY_COLOR};
 `;
 
@@ -59,7 +59,7 @@ const Home = ({translate: __}) => {
         </LogoWrapper>
         <WelcomeBlock item container md={6} direction="column" alignItems="center">
           <Title>{__('Welcome')}</Title>
-          <SecondTitle>{__("It's")} <Name>financelead</Name> &ndash; <br /> {__('personal finance planner.')}</SecondTitle>
+          <SecondTitle>{__("It's")} <WebsiteName>financelead</WebsiteName> &ndash; <br /> {__('personal finance planner.')}</SecondTitle>
           <Description>
             {__('Here will be some description.')}
           </Description>

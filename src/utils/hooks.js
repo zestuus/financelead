@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { signInSchema, signUpSchema } from './validators';
-import { signIn, signUp } from '../api/auth';
 import { useHistory } from 'react-router-dom';
+
+import { signInSchema, signUpSchema } from './validators';
+
+import { signIn, signUp } from '../api/auth';
 import { FORM_TYPE } from '../constants/enums';
 
 export const useFormHandler = (type, onLogin) => {
   const schema = type === FORM_TYPE.SIGN_UP ? signUpSchema : signInSchema;
 
   const history = useHistory();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(FORM_TYPE.SIGN_UP ? {} : { mfa: '' });
   const [formErrors, setFormErrors] = useState({});
 
   const handleChange = async event => {
@@ -17,9 +19,8 @@ export const useFormHandler = (type, onLogin) => {
 
     if(formErrors[name]) {
       try {
-
         await schema.validate(newFormData, { abortEarly: false });
-        setFormErrors({});
+        setFormErrors(formErrors.form === 'mfa' ? { form: 'mfa' } : {});
       } catch (e) {
         const error = e.inner.find(error => error.path === name)
         setFormErrors({ ...formErrors, [name]: error && error.message });
@@ -33,7 +34,7 @@ export const useFormHandler = (type, onLogin) => {
 
     try {
       await schema.validate(formData, { abortEarly: false });
-      setFormErrors({});
+      setFormErrors(formErrors.form === 'mfa' ? { form: 'mfa' } : {});
     } catch (e) {
       const error = e.inner.find(error => error.path === name);
       setFormErrors({ ...formErrors, [name]: error && error.message });
@@ -50,14 +51,24 @@ export const useFormHandler = (type, onLogin) => {
         }), {});
       setFormErrors(newFormErrors);
     }
-    if(!Object.values(formErrors).find(error => error)){
+    if(!Object.values({ ...formErrors, form: null }).find(error => error)){
       const token = type === FORM_TYPE.SIGN_UP ? (
           await signUp({...formData, password_repeat: undefined })
         ) : (
           await signIn(formData)
         );
       if (token) {
-        onLogin(token, history);
+        if (token === 'mfa') {
+          if (formErrors.form === 'mfa') {
+            setFormErrors({ form: 'mfa', mfa: "Verification code is invalid" });
+          } else {
+            setFormErrors({
+              form: 'mfa'
+            });
+          }
+        } else {
+          onLogin(token, history);
+        }
       } else {
         setFormErrors({
           form: type === FORM_TYPE.SIGN_UP
@@ -68,6 +79,6 @@ export const useFormHandler = (type, onLogin) => {
   }
 
   return [
-    formErrors, handleChange, handleBlur, handleSubmit
+    formErrors, handleChange, handleBlur, handleSubmit,
   ];
 }

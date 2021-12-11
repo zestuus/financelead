@@ -72,11 +72,22 @@ const SignUp = ({ onLogin, translate: __ }) => {
         </FormItem>
         <FormItem>
           <Input
-            label={__('Full name')}
+            label={__('First name')}
             variant="outlined"
-            name="full_name"
-            error={!!formErrors['full_name']}
-            helperText={formErrors['full_name']}
+            name="first_name"
+            error={!!formErrors['first_name']}
+            helperText={formErrors['first_name']}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </FormItem>
+        <FormItem>
+          <Input
+            label={__('Last name')}
+            variant="outlined"
+            name="last_name"
+            error={!!formErrors['last_name']}
+            helperText={formErrors['last_name']}
             onChange={handleChange}
             onBlur={handleBlur}
           />

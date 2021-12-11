@@ -13,3 +13,21 @@ export const getProfile = async () => {
     return null;
   }
 }
+
+export const enableMfa = async () => {
+  try {
+    const response = await axios.post(`${url}/mfa`, null, getAuthHeader());
+    return response.data;
+  } catch (e) {
+    return null;
+  }
+}
+
+export const disableMfa = async () => {
+  try {
+    const response = await axios.delete(`${url}/mfa`, getAuthHeader());
+    return response.status === 200;
+  } catch (e) {
+    return false;
+  }
+}

@@ -73,7 +73,7 @@ const SignIn = ({ onLogin, translate: __ }) => {
       <Form item container direction="column" justifyContent="space-between">
         <Title>{__('Sign In')}</Title>
         <FormError visible={!formErrors['form']}>
-          {formErrors['form']}
+          {formErrors['form'] !== 'mfa' && formErrors['form']}
         </FormError>
         <FormItem>
           <Input
@@ -101,6 +101,21 @@ const SignIn = ({ onLogin, translate: __ }) => {
             onBlur={handleBlur}
           />
         </FormItem>
+        {formErrors.form === 'mfa' && (
+          <FormItem>
+            <Input
+              required
+              label={__('Verification code')}
+              variant="outlined"
+              name="mfa"
+              type="text"
+              error={!!formErrors['mfa']}
+              helperText={formErrors['mfa']}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </FormItem>
+        )}
         <SubmitButton
           variant="contained"
           color="primary"
