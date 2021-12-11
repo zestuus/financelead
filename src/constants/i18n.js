@@ -130,6 +130,33 @@ const translation = {
   'Cancel': {
     [LANGUAGE.UK]: "Скасувати",
   },
+  'verification code is invalid': {
+    [LANGUAGE.UK]: "код підтвердження невірний",
+  },
+  'This email is taken!': {
+    [LANGUAGE.UK]: "Цей email занятий",
+  },
+  'Invalid credentials!': {
+    [LANGUAGE.UK]: "Неправильні дані для входу",
+  },
+  'email must be a valid email': {
+    [LANGUAGE.UK]: "цей email недійсний",
+  },
+  "passwords aren't equal!": {
+    [LANGUAGE.UK]: "паролі не збігаються",
+  },
+  "password must be at least 6 characters": {
+    [LANGUAGE.UK]: "пароль повинен мати щонайменше 6 символів",
+  },
+  "email is a required field": {
+    [LANGUAGE.UK]: "email це обовязкове поле",
+  },
+  "password is a required field": {
+    [LANGUAGE.UK]: "пароль це обовязкове поле",
+  },
+  "password_repeat is a required field": {
+    [LANGUAGE.UK]: "введіть пароль ще раз",
+  },
 };
 
 const i18n = Object

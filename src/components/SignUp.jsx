@@ -20,7 +20,7 @@ export const SignUpTitle = styled(Title)`
 const SignUp = ({ onLogin, translate: __ }) => {
   const [
     formErrors, handleChange, handleBlur, handleSubmit
-  ] = useFormHandler(FORM_TYPE.SIGN_UP, onLogin);
+  ] = useFormHandler(FORM_TYPE.SIGN_UP, onLogin, __);
 
   return (
     <Container container justifyContent="center" alignItems="center">

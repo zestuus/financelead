@@ -66,7 +66,7 @@ export const SubmitButton = styled(Button)`
 const SignIn = ({ onLogin, translate: __ }) => {
   const [
     formErrors, handleChange, handleBlur, handleSubmit
-  ] = useFormHandler(FORM_TYPE.SIGN_IN, onLogin);
+  ] = useFormHandler(FORM_TYPE.SIGN_IN, onLogin, __);
 
   return (
     <Container container justifyContent="center" alignItems="center">

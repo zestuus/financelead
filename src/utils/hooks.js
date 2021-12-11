@@ -6,7 +6,7 @@ import { signInSchema, signUpSchema } from './validators';
 import { signIn, signUp } from '../api/auth';
 import { FORM_TYPE } from '../constants/enums';
 
-export const useFormHandler = (type, onLogin) => {
+export const useFormHandler = (type, onLogin, __) => {
   const schema = type === FORM_TYPE.SIGN_UP ? signUpSchema : signInSchema;
 
   const history = useHistory();
@@ -23,7 +23,7 @@ export const useFormHandler = (type, onLogin) => {
         setFormErrors(formErrors.form === 'mfa' ? { form: 'mfa' } : {});
       } catch (e) {
         const error = e.inner.find(error => error.path === name)
-        setFormErrors({ ...formErrors, [name]: error && error.message });
+        setFormErrors({ ...formErrors, [name]: error && __(error.message) });
       }
     }
     setFormData(newFormData);
@@ -37,7 +37,7 @@ export const useFormHandler = (type, onLogin) => {
       setFormErrors(formErrors.form === 'mfa' ? { form: 'mfa' } : {});
     } catch (e) {
       const error = e.inner.find(error => error.path === name);
-      setFormErrors({ ...formErrors, [name]: error && error.message });
+      setFormErrors({ ...formErrors, [name]: error && __(error.message) });
     }
   };
 
@@ -47,7 +47,7 @@ export const useFormHandler = (type, onLogin) => {
     } catch (e) {
       const newFormErrors = e.inner
         .reduce((formErrors, error) => ({
-          ...formErrors, [error.path]: error.message
+          ...formErrors, [error.path]: __(error.message)
         }), {});
       setFormErrors(newFormErrors);
     }
@@ -60,7 +60,7 @@ export const useFormHandler = (type, onLogin) => {
       if (token) {
         if (token === 'mfa') {
           if (formErrors.form === 'mfa') {
-            setFormErrors({ form: 'mfa', mfa: "Verification code is invalid" });
+            setFormErrors({ form: 'mfa', mfa: __('Verification code is invalid') });
           } else {
             setFormErrors({
               form: 'mfa'
@@ -72,7 +72,7 @@ export const useFormHandler = (type, onLogin) => {
       } else {
         setFormErrors({
           form: type === FORM_TYPE.SIGN_UP
-            ? 'Email is taken!' : 'Invalid credentials!'
+            ? __('This email is taken!') : __('Invalid credentials!'),
         });
       }
     }
