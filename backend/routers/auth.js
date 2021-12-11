@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const Cryptr = require('cryptr');
 const jwt = require('jsonwebtoken');
 const { verify } = require('2fa-util');
 
@@ -54,7 +55,12 @@ router.post('/sign-in', async (req, res) => {
     }
 
     let token = 'mfa';
-    const mfaValid = !existingUser.mfa || verify(mfa, existingUser.mfa);
+    let mfaValid = true;
+    if (existingUser.mfa) {
+      const cryptr = new Cryptr(process.env.TOKEN_SECRET);
+      const encodedSecret = cryptr.decrypt(existingUser.mfa);
+      mfaValid = verify(mfa, encodedSecret);
+    }
 
     if (mfaValid) {
       token = jwt.sign({id: existingUser.id, email}, process.env.TOKEN_SECRET);

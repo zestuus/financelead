@@ -1,8 +1,10 @@
 const express = require('express');
+const Cryptr = require('cryptr');
 const { generateSecret } = require('2fa-util');
 
-const db = require('../../db/models');
 const { privateRoute } = require('../middlewares');
+
+const db = require('../../db/models');
 
 const router = express.Router();
 
@@ -39,8 +41,9 @@ router.post('/mfa', privateRoute, async (req, res) => {
     }
 
     const { qrcode, secret } = await generateSecret(`${first_name} ${last_name}`, 'financelead');
+    const cryptr = new Cryptr(process.env.TOKEN_SECRET);
 
-    user.mfa = secret;
+    user.mfa = cryptr.encrypt(secret);
     await user.save();
 
     res.send({ qrcode });
