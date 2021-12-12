@@ -4,8 +4,10 @@ const Cryptr = require('cryptr');
 const jwt = require('jsonwebtoken');
 const { verify } = require('2fa-util');
 
+const { TOKEN_SECRET } = require('../constants/config');
+const { signUpSchema, signInSchema } = require('../utils/validation');
+
 const db = require('../../db/models');
-const { signUpSchema, signInSchema } = require('../validation');
 
 const router = express.Router();
 
@@ -31,7 +33,7 @@ router.post('/sign-up', async (req, res) => {
     const user = db.User.build(userData);
 
     const newUser = await user.save();
-    const token = jwt.sign({ id: newUser.id, email }, process.env.TOKEN_SECRET)
+    const token = jwt.sign({ id: newUser.id, email }, TOKEN_SECRET)
 
     res.send(token);
   } catch (err) {
@@ -57,13 +59,13 @@ router.post('/sign-in', async (req, res) => {
     let token = 'mfa';
     let mfaValid = true;
     if (existingUser.mfa) {
-      const cryptr = new Cryptr(process.env.TOKEN_SECRET);
+      const cryptr = new Cryptr(TOKEN_SECRET);
       const encodedSecret = cryptr.decrypt(existingUser.mfa);
       mfaValid = verify(mfa, encodedSecret);
     }
 
     if (mfaValid) {
-      token = jwt.sign({id: existingUser.id, email}, process.env.TOKEN_SECRET);
+      token = jwt.sign({id: existingUser.id, email}, TOKEN_SECRET);
     }
 
     res.send(token);

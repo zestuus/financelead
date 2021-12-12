@@ -1,4 +1,4 @@
-export const APP_URL = process.env.REACT_APP_API_URL;
+export const APP_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
 export const PRIMARY_COLOR = '#335410';
 
