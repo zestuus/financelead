@@ -18,5 +18,6 @@ Our project architecture described [here](./docs/architecture.md).
     - **yarn** command installed (you can install it using the following command `npm install -g yarn`
     - **psql** command installed on your computer
 1. Install all required packages: `yarn` or `yarn install`
+1. Create superuser for the local database: `psql -U postgres -c "CREATE USER financelead_test SUPERUSER PASSWORD '1111';"`
 1. Create the local database **financelead**: `npx sequelize-cli db:create`
 1. Run all required migrations: `npx sequelize-cli db:migrate`
