@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         // todo: add relations here
         static associate(models) {
-            User.hasMany(models.Account);
+            User.hasMany(models.Account, { as: 'accounts' });
         }
     }
     User.init({

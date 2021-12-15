@@ -3,7 +3,6 @@ module.exports = {
     up: async(queryInterface, Sequelize) => {
         await queryInterface.createTable('Accounts', {
             id: {
-                allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
@@ -13,11 +12,20 @@ module.exports = {
                 type: Sequelize.STRING
             },
             number: {
-                allowNull: false,
                 type: Sequelize.STRING
             },
             balanse: {
-                type: Sequelize.FLOAT
+                type: Sequelize.FLOAT,
+                allowNull: false,
+                default: 0,
+            },
+            currency: {
+                allowNull: false,
+                type: Sequelize.STRING,
+            },
+            color: {
+                allowNull: false,
+                type: Sequelize.STRING,
             },
             createdAt: {
                 allowNull: false,
@@ -28,8 +36,7 @@ module.exports = {
                 type: Sequelize.DATE
             },
             userID: {
-                type: Sequelize.INTEGER,
-                primaryKey: true,
+                type: Sequelize.INTEGER
             }
         });
     },
