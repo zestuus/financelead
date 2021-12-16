@@ -15,6 +15,7 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import MenuIcon from '@material-ui/icons/Menu';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ProfileIcon from '@material-ui/icons/AccountCircle';
+import TransferWithinAStationIcon from '@material-ui/icons/TransferWithinAStation';
 
 import Logo from "./Logo";
 import { PRIMARY_COLOR } from "../constants/config";
@@ -48,7 +49,7 @@ const MenuBlock = styled.div`
   }
 `;
 
-const Border = styled.hr`
+export const Border = styled.hr`
   border-top: 2px solid ${PRIMARY_COLOR};
   margin: 0;
 `;
@@ -75,6 +76,12 @@ const Header = ({ translate: __, actions, isLoggedIn, onLogout, language }) => {
   ];
 
   const privateMenuItems = [
+    { key: 'Transactions', event: () => history.push('/transactions'), title: (
+      <Grid container justifyContent="center" alignItems="center">
+        {__('Transactions')}
+        <TransferWithinAStationIcon />
+      </Grid>
+    )},
     { key: 'Profile', event: () => history.push('/profile'), title: (
       <Grid container justifyContent="center" alignItems="center">
         {__('Profile')}

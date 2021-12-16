@@ -145,17 +145,26 @@ const translation = {
   "passwords aren't equal!": {
     [LANGUAGE.UK]: "паролі не збігаються",
   },
-  "password must be at least 6 characters": {
-    [LANGUAGE.UK]: "пароль повинен мати щонайменше 6 символів",
+  'password must be at least 6 characters': {
+    [LANGUAGE.UK]: 'пароль повинен мати щонайменше 6 символів',
   },
-  "email is a required field": {
-    [LANGUAGE.UK]: "email це обовязкове поле",
+  'email is a required field': {
+    [LANGUAGE.UK]: 'email це обовязкове поле',
   },
-  "password is a required field": {
-    [LANGUAGE.UK]: "пароль це обовязкове поле",
+  'password is a required field': {
+    [LANGUAGE.UK]: 'пароль це обовязкове поле',
   },
-  "password_repeat is a required field": {
-    [LANGUAGE.UK]: "введіть пароль ще раз",
+  'password_repeat is a required field': {
+    [LANGUAGE.UK]: 'введіть пароль ще раз',
+  },
+  'Transactions': {
+    [LANGUAGE.UK]: 'Транзакції',
+  },
+  'Accounts': {
+    [LANGUAGE.UK]: 'Рахунки',
+  },
+  'Add new account': {
+    [LANGUAGE.UK]: 'Додати новий рахунок',
   },
 };
 

@@ -45,10 +45,10 @@ const WebsiteName = styled.span`
   color: ${PRIMARY_COLOR};
 `;
 
-const Description = styled.p`
-  font-size: 20px;
-  line-height: 25px;
-`;
+// const Description = styled.p`
+//   font-size: 20px;
+//   line-height: 25px;
+// `;
 
 const Home = ({translate: __}) => {
   return (
@@ -60,9 +60,9 @@ const Home = ({translate: __}) => {
         <WelcomeBlock item container md={6} direction="column" alignItems="center">
           <Title>{__('Welcome')}</Title>
           <SecondTitle>{__("It's")} <WebsiteName>financelead</WebsiteName> &ndash; <br /> {__('personal finance planner.')}</SecondTitle>
-          <Description>
-            {__('Here will be some description.')}
-          </Description>
+          {/*<Description>*/}
+          {/*  {__('Here will be some description.')}*/}
+          {/*</Description>*/}
         </WelcomeBlock>
       </Container>
     </Grid>

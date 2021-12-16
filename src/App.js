@@ -11,6 +11,7 @@ import PrivateRoute from "./components/Router/PrivateRoute";
 import Profile from "./components/Profile";
 import { loadStorageItem, saveItemInStorage, deleteStorageItem } from './utils/localStorage';
 import withSettings from './components/HOCs/withSettings';
+import Transactions from "./components/Management/Transactions";
 
 const App = ({ translate: __ }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!loadStorageItem("user"));
@@ -35,6 +36,7 @@ const App = ({ translate: __ }) => {
         <PublicRoute path="/sign-in" component={() => <SignIn onLogin={handleLogin} />} />
         <PublicRoute path="/sign-up" component={() => <SignUp onLogin={handleLogin} />} />
         <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/transactions" component={Transactions} />
       </Switch>
     </Router>
   );
